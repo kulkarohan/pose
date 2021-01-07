@@ -4,8 +4,7 @@ import os
 from setuptools import setup
 from setuptools.command.install import install
 
-import pose
-
+import pose_cli
 
 class PoseInstall(install):
     """Create folder to store experiments and images.
@@ -29,13 +28,15 @@ class PoseInstall(install):
 
 
 setup(
-    name='pose',
-    version=pose.__version__,
-    description='Automated image capturing via command line',
+    name='pose_cli',
+    version=pose_cli.__version__,
+    description='Automate image capturing via command line',
     license='MIT',
-    packages=['pose'],
+    python_requires='>=3.6',
+    package_dir={'': 'pose_cli'},
+    py_modules=['pose_cli'],
     entry_points={
-        'console_scripts': ['pose=pose.__main__:main']
+        'console_scripts': ['pose=pose_cli.__main__:main']
     },
     cmdclass={'install': PoseInstall},
 )
